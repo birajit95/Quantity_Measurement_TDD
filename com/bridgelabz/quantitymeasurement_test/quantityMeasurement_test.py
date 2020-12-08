@@ -32,3 +32,8 @@ def test_givenZeroInchAndZeroInch_WhenCompared_ShouldReturnTrue():
     inchValue1 = Inch(0.0)
     inchValue2 = Inch(0.0)
     assert inchValue1 == inchValue2
+
+
+def test_givenAnInchValue_IfNotFloatType_ShouldRaise_InvalidTypeException():
+    with pytest.raises(InvalidTypeException):
+        inchValue = Inch(10)
