@@ -19,3 +19,9 @@ def test_givenTwoSameValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTyp
         feetValue1 = Feet(0.0)
         feetValue2 = float(0.0)
         assert feetValue1 == feetValue2
+
+
+def test_givenTwoDifferentValuesOfFeetType_WhenCompared_ShouldReturnFalse():
+    feetValue1 = Feet(2.0)
+    feetValue2 = Feet(1.0)
+    assert (feetValue1 == feetValue2) == False
