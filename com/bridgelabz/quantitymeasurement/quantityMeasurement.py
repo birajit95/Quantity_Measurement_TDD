@@ -30,6 +30,16 @@ class Inch:
         return self.inch == other.inch
 
 
+class Yard:
+    def __init__(self, yard):
+        if type(yard) is not float:
+            raise InvalidTypeException(ExceptionType.NOT_FLOAT_TYPE_EXCEPTION.value)
+        self.yard = yard
+
+    def __eq__(self, other):
+        if not isinstance(other, Yard) and self.yard == other:
+            raise InvalidTypeException(ExceptionType.NOT_FEET_TYPE_EXCEPTION.value)
+        return self.yard == other.yard
 
 
 if __name__ == '__main__':
