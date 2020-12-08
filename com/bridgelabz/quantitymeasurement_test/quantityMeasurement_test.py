@@ -1,5 +1,6 @@
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import Feet
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import Inch
+from com.bridgelabz.quantitymeasurement.quantityMeasurement import Yard
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeException
 import pytest
 
@@ -86,3 +87,28 @@ def test_given_5Inch_60Feet_WhenCompared_ShouldReturnFalse():
     inchValue = Inch(5.0)
     feetValue = Feet(60.0)
     assert (inchValue == feetValue) == False
+
+# Test cases for Yard
+
+def test_givenZeroYardAndZeroYard_WhenCompared_ShouldReturnTrue():
+    yardValue1 = Yard(0.0)
+    yardValue2 = Yard(0.0)
+    assert yardValue1 == yardValue2
+
+
+def test_givenAYardValue_IfNotFloatType_ShouldRaise_InvalidTypeException():
+    with pytest.raises(InvalidTypeException):
+        yardValue = Yard(10)
+
+
+def test_givenTwoSameYardValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
+    with pytest.raises(InvalidTypeException):
+        yardValue1 = Yard(0.0)
+        yardValue2 = float(0.0)
+        assert yardValue1 == yardValue2
+
+
+def test_givenTwoDifferentValuesOfYardType_WhenCompared_ShouldReturnFalse():
+    yardValue1 = Feet(2.0)
+    yardValue2 = Feet(1.0)
+    assert (yardValue1 == yardValue2) == False
