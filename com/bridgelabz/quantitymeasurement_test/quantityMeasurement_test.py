@@ -1,4 +1,5 @@
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import Feet
+from com.bridgelabz.quantitymeasurement.quantityMeasurement import Inch
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeException
 import pytest
 
@@ -25,3 +26,9 @@ def test_givenTwoDifferentValuesOfFeetType_WhenCompared_ShouldReturnFalse():
     feetValue1 = Feet(2.0)
     feetValue2 = Feet(1.0)
     assert (feetValue1 == feetValue2) == False
+
+
+def test_givenZeroInchAndZeroInch_WhenCompared_ShouldReturnTrue():
+    inchValue1 = Inch(0.0)
+    inchValue2 = Inch(0.0)
+    assert inchValue1 == inchValue2
