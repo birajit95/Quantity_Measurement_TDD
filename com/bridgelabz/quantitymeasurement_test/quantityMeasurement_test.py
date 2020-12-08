@@ -47,3 +47,9 @@ def test_givenTwoSameInchValues_WhenComparedIfTypeMissMatched_ShouldRaise_Invali
         inchValue1 = Inch(0.0)
         inchValue2 = float(0.0)
         assert inchValue1 == inchValue2
+
+
+def test_givenTwoDifferentValuesOfInchType_WhenCompared_ShouldReturnFalse():
+    inchValue1 = Inch(2.0)
+    inchValue2 = Inch(1.0)
+    assert (inchValue1 == inchValue2) == False
