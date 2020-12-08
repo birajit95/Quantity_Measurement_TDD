@@ -28,6 +28,9 @@ def test_givenTwoDifferentValuesOfFeetType_WhenCompared_ShouldReturnFalse():
     assert (feetValue1 == feetValue2) == False
 
 
+# Test cases for Inch
+
+
 def test_givenZeroInchAndZeroInch_WhenCompared_ShouldReturnTrue():
     inchValue1 = Inch(0.0)
     inchValue2 = Inch(0.0)
@@ -37,3 +40,10 @@ def test_givenZeroInchAndZeroInch_WhenCompared_ShouldReturnTrue():
 def test_givenAnInchValue_IfNotFloatType_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
         inchValue = Inch(10)
+
+
+def test_givenTwoSameInchValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
+    with pytest.raises(InvalidTypeException):
+        inchValue1 = Inch(0.0)
+        inchValue2 = float(0.0)
+        assert inchValue1 == inchValue2
