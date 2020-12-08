@@ -8,6 +8,8 @@ class Feet:
         self.feet = feet
 
     def __eq__(self, other):
+        if not isinstance(other, Feet) and self.feet == other:
+            raise InvalidTypeException(ExceptionType.NOT_FEET_TYPE_EXCEPTION.value)
         return self.feet == other.feet
 
 
