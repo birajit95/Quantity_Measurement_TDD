@@ -80,3 +80,9 @@ def test_given_60InchAnd_5Feet_WhenComapared_ShouldReturnTrue():
     inchValue = Inch(60.0)
     feetValue = Feet(5.0)
     assert inchValue == feetValue
+
+
+def test_given_5Inch_60Feet_WhenCompared_ShouldReturnFalse():
+    inchValue = Inch(5.0)
+    feetValue = Feet(60.0)
+    assert (inchValue == feetValue) == False
