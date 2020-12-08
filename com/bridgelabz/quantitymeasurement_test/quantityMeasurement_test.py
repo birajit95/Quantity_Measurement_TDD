@@ -57,7 +57,14 @@ def test_givenTwoDifferentValuesOfInchType_WhenCompared_ShouldReturnFalse():
 
 # Test Cases for 1 Feet = 12 Inch
 
+
 def test_given_1FeetAnd_12Inch_WhenCompared_ShouldReturnTrue():
     feetValue = Feet(1.0)
     inchValue = Inch(12.0)
     assert feetValue == inchValue
+
+
+def test_given_12InchAnd_1Feet_WhenCompared_ShouldReturnTrue():
+    inchValue = Inch(12.0)
+    feetValue = Feet(1.0)
+    assert inchValue == feetValue
