@@ -4,6 +4,7 @@ import enum
 class ExceptionType(enum.Enum):
     NOT_FLOAT_TYPE_EXCEPTION = "Given value is not a float type. It must be a float type"
     NOT_FEET_TYPE_EXCEPTION = "Other value is not Feet type"
+    NOT_INCH_TYPE_EXCEPTION = "Other value is not Inch Type"
 
 
 class InvalidTypeException(Exception):

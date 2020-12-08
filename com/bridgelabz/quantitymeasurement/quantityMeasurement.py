@@ -21,6 +21,8 @@ class Inch:
         self.inch = inch
 
     def __eq__(self, other):
+        if not isinstance(other, Inch) and self.inch == other:
+            raise InvalidTypeException(ExceptionType.NOT_FEET_TYPE_EXCEPTION.value)
         return self.inch == other.inch
 
 
