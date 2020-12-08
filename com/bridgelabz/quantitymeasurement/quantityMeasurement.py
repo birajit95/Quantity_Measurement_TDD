@@ -1,6 +1,7 @@
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeException
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import ExceptionType
 
+
 class Feet:
     def __init__(self, feet):
         if type(feet) is not float:
@@ -12,6 +13,13 @@ class Feet:
             raise InvalidTypeException(ExceptionType.NOT_FEET_TYPE_EXCEPTION.value)
         return self.feet == other.feet
 
+
+class Inch:
+    def __init__(self, inch):
+        self.inch = inch
+
+    def __eq__(self, other):
+        return self.inch == other.inch
 
 if __name__ == '__main__':
     print("Welcome to Quantity Measurement Problem")
