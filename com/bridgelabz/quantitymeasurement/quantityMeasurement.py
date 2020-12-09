@@ -25,6 +25,8 @@ class Inch:
         self.inch = inch
 
     def __eq__(self, other):
+        if isinstance(other, Yard):
+            return self.inch == other.yard * 36
         if isinstance(other, Feet):
             return self.inch == other.feet * 12
         if not isinstance(other, Inch) and self.inch == other:
