@@ -11,9 +11,9 @@ def test_givenZeroFeetAndZeroFeet_WhenCompared_ShouldReturnTrue():
     assert feetValue1 == feetValue2
 
 
-def test_givenAFeetValue_IfNotFloatType_ShouldRaise_InvalidTypeException():
+def test_givenAFeetValue_IfNotNumberType_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
-        feetValue = Feet(10)
+        feetValue = Feet("hello")
 
 
 def test_givenTwoSameValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
@@ -38,9 +38,9 @@ def test_givenZeroInchAndZeroInch_WhenCompared_ShouldReturnTrue():
     assert inchValue1 == inchValue2
 
 
-def test_givenAnInchValue_IfNotFloatType_ShouldRaise_InvalidTypeException():
+def test_givenAnInchValue_IfNotNumberType_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
-        inchValue = Inch(10)
+        inchValue = Inch("h")
 
 
 def test_givenTwoSameInchValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
@@ -96,9 +96,9 @@ def test_givenZeroYardAndZeroYard_WhenCompared_ShouldReturnTrue():
     assert yardValue1 == yardValue2
 
 
-def test_givenAYardValue_IfNotFloatType_ShouldRaise_InvalidTypeException():
+def test_givenAYardValue_IfNotNumberType_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
-        yardValue = Yard(10)
+        yardValue = Yard("world")
 
 
 def test_givenTwoSameYardValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
