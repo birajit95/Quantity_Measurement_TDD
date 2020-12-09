@@ -9,6 +9,8 @@ class Feet:
         self.feet = feet
 
     def __eq__(self, other):
+        if isinstance(other, Yard):
+            return self.feet == other.yard * 3
         if isinstance(other, Inch):
             return other.inch == self.feet * 12
         if not isinstance(other, Feet) and self.feet == other:
@@ -26,7 +28,7 @@ class Inch:
         if isinstance(other, Feet):
             return self.inch == other.feet * 12
         if not isinstance(other, Inch) and self.inch == other:
-            raise InvalidTypeException(ExceptionType.NOT_FEET_TYPE_EXCEPTION.value)
+            raise InvalidTypeException(ExceptionType.NOT_INCH_TYPE_EXCEPTION.value)
         return self.inch == other.inch
 
 
@@ -38,7 +40,7 @@ class Yard:
 
     def __eq__(self, other):
         if not isinstance(other, Yard) and self.yard == other:
-            raise InvalidTypeException(ExceptionType.NOT_FEET_TYPE_EXCEPTION.value)
+            raise InvalidTypeException(ExceptionType.NOT_YARD_TYPE_EXCEPTION.value)
         return self.yard == other.yard
 
 
