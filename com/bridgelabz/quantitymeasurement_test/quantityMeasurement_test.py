@@ -132,3 +132,7 @@ def test_given_36InchAnd_1Yard_WhenCompared_ShouldReturnTrue():
 
 def test_given_1YardAnd_3Feet_WhenCompared_ShouldReturnTrue():
     assert Yard(1.0) == Feet(3.0)
+
+
+def test_given_1InchAnd_1Yard_WhenCompared_ShouldReturnFalse():
+    assert (Inch(1.0) == Yard(1.0)) == False
