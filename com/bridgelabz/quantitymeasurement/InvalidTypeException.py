@@ -2,10 +2,8 @@ import enum
 
 
 class ExceptionType(enum.Enum):
-    NOT_FLOAT_TYPE_EXCEPTION = "Given value is not a float type. It must be a float type"
-    NOT_FEET_TYPE_EXCEPTION = "Other value is not Feet type"
-    NOT_INCH_TYPE_EXCEPTION = "Other value is not Inch Type"
-    NOT_YARD_TYPE_EXCEPTION = "Other value is not Yard Type"
+    NOT_A_NUMBER_TYPE_EXCEPTION = "Given value is not a number"
+    NOT_LENGTH_TYPE_EXCEPTION = "Other value is not Length type"
 
 
 

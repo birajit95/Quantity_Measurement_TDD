@@ -2,52 +2,53 @@ from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeE
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import ExceptionType
 
 
-class Feet:
+class Length:
+    def __init__(self, length):
+        if type(length) is not float and type(length) is not int:
+            raise InvalidTypeException(ExceptionType.NOT_A_NUMBER_TYPE_EXCEPTION.value)
+        self.length = length
+
+    def __eq__(self, other):
+        if type(self) == type(other):
+            return self.length == other.length
+        elif isinstance(self, Feet) and isinstance(other, Inch):
+            return other.length == self.length * 12
+        elif isinstance(self, Inch) and isinstance(other, Feet):
+            return other.length * 12 == self.length
+        elif isinstance(self, Feet) and isinstance(other, Yard):
+            return other.length * 3 == self.length
+        elif isinstance(self, Yard) and isinstance(other, Feet):
+            return other.length == self.length * 3
+        elif isinstance(self, Inch) and isinstance(other, Yard):
+            return other.length * 36 == self.length
+        elif isinstance(self, Yard) and isinstance(other, Inch):
+            return other.length == self.length * 36
+        elif type(self) != type(other) and self.length == other:
+            raise InvalidTypeException(ExceptionType.NOT_LENGTH_TYPE_EXCEPTION.value)
+
+
+class Feet(Length):
     def __init__(self, feet):
-        if type(feet) is not float:
-            raise InvalidTypeException(ExceptionType.NOT_FLOAT_TYPE_EXCEPTION.value)
-        self.feet = feet
+        super().__init__(length=feet)
 
     def __eq__(self, other):
-        if isinstance(other, Yard):
-            return self.feet == other.yard * 3
-        if isinstance(other, Inch):
-            return other.inch == self.feet * 12
-        if not isinstance(other, Feet) and self.feet == other:
-            raise InvalidTypeException(ExceptionType.NOT_FEET_TYPE_EXCEPTION.value)
-        return self.feet == other.feet
+        return super().__eq__(other)
 
 
-class Inch:
+class Inch(Length):
     def __init__(self, inch):
-        if type(inch) is not float:
-            raise InvalidTypeException(ExceptionType.NOT_FLOAT_TYPE_EXCEPTION.value)
-        self.inch = inch
+        super().__init__(length=inch)
 
     def __eq__(self, other):
-        if isinstance(other, Yard):
-            return self.inch == other.yard * 36
-        if isinstance(other, Feet):
-            return self.inch == other.feet * 12
-        if not isinstance(other, Inch) and self.inch == other:
-            raise InvalidTypeException(ExceptionType.NOT_INCH_TYPE_EXCEPTION.value)
-        return self.inch == other.inch
+        return super().__eq__(other)
 
 
-class Yard:
+class Yard(Length):
     def __init__(self, yard):
-        if type(yard) is not float:
-            raise InvalidTypeException(ExceptionType.NOT_FLOAT_TYPE_EXCEPTION.value)
-        self.yard = yard
+        super().__init__(length=yard)
 
     def __eq__(self, other):
-        if isinstance(other, Feet):
-            return other.feet == self.yard * 3
-        if isinstance(other, Inch):
-            return other.inch == self.yard * 36
-        if not isinstance(other, Yard) and self.yard == other:
-            raise InvalidTypeException(ExceptionType.NOT_YARD_TYPE_EXCEPTION.value)
-        return self.yard == other.yard
+        return super().__eq__(other)
 
 
 if __name__ == '__main__':
