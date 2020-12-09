@@ -39,6 +39,8 @@ class Yard:
         self.yard = yard
 
     def __eq__(self, other):
+        if isinstance(other, Inch):
+            return other.inch == self.yard * 36
         if not isinstance(other, Yard) and self.yard == other:
             raise InvalidTypeException(ExceptionType.NOT_YARD_TYPE_EXCEPTION.value)
         return self.yard == other.yard
