@@ -166,3 +166,13 @@ def test_given_2InchAnd_5Centimetre_WhenCompared_ShouldReturnTrue():
 
 def test_given_5CentimetreAnd_2Inch_WhenCompared_ShouldReturnTrue():
     assert Centimetre(5) == Inch(2)
+
+
+@pytest.mark.parametrize("length1,length2,expected",
+                         [
+                             (Inch(2), Feet(5), False),
+                             (Inch(2), Yard(5), False),
+
+                         ])
+def test_given_2InchWithOtherLengthType_WhenCompared_ShouldReturnFalse(length1, length2, expected):
+    assert (length1 == length2) == expected
