@@ -197,3 +197,7 @@ def test_given_2inchAnd_2Inch_WhenAdded_ShouldReturn_4Inch():
 
 def test_given_1FeetAnd_2Inch_WhenAdded_ShouldReturn_14Inch():
     assert Feet(1) + Inch(2) == Inch(14)
+
+
+def test_given_1FeetAnd_1Feet_WhenAdded_ShouldReturn_24Inch():
+    assert Feet(1) + Feet(1) == Inch(24)
