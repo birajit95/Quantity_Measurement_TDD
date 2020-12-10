@@ -193,3 +193,7 @@ def test_givenZeroUnitOfSameType_WhenAdded_ShouldReturnZeroUnitOfSameType(length
 
 def test_given_2inchAnd_2Inch_WhenAdded_ShouldReturn_4Inch():
     assert Inch(2) + Inch(2) == Inch(4)
+
+
+def test_given_1FeetAnd_2Inch_WhenAdded_ShouldReturn_14Inch():
+    assert Feet(1) + Inch(2) == Inch(14)
