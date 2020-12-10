@@ -176,3 +176,15 @@ def test_given_5CentimetreAnd_2Inch_WhenCompared_ShouldReturnTrue():
                          ])
 def test_given_2InchWithOtherLengthType_WhenCompared_ShouldReturnFalse(length1, length2, expected):
     assert (length1 == length2) == expected
+
+# Test cases for Length additions
+
+@pytest.mark.parametrize("length1,length2,expected",
+                         [
+                             (Feet(0), Feet(0), Feet(0)),
+                             (Inch(0), Inch(0), Inch(0)),
+                             (Yard(0), Yard(0), Yard(0)),
+                             (Centimetre(0), Centimetre(0), Centimetre(0))
+                         ])
+def test_givenZeroUnitOfSameType_WhenAdded_ShouldReturnZeroUnitOfSameType(length1,length2,expected):
+    assert (length1 + length2) == expected
