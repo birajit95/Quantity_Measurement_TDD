@@ -30,6 +30,11 @@ class Length:
         elif type(self) != type(other) and self.length == other:
             raise InvalidTypeException(ExceptionType.NOT_LENGTH_TYPE_EXCEPTION.value)
 
+    @staticmethod
+    def convertLength(length1, length2):
+        if isinstance(length1, Feet) and isinstance(length2, Inch):
+            return length1.length * 12
+
 
 class Feet(Length):
     def __init__(self, feet):
@@ -39,6 +44,10 @@ class Feet(Length):
         return super().__eq__(other)
 
     def __add__(self, other):
+        if isinstance(other, Inch):
+            convertedLength = Length.convertLength(self, other)
+            other.length = other.length + convertedLength
+            return other
         self.length = self.length + other.length
         return self
 
