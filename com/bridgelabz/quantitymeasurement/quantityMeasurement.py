@@ -34,6 +34,8 @@ class Length:
     def convertLength(length1, length2):
         if isinstance(length1, Feet) and isinstance(length2, Inch):
             return length1.length * 12
+        if isinstance(length1, Inch) and isinstance(length2, Centimetre):
+            return length2.length / 2.5
 
 
 class Feet(Length):
@@ -60,6 +62,10 @@ class Inch(Length):
         return super().__eq__(other)
 
     def __add__(self, other):
+        if isinstance(other, Centimetre):
+            convertedLength = Length.convertLength(self, other)
+            self.length = self.length + convertedLength
+            return self
         self.length = self.length + other.length
         return self
 
