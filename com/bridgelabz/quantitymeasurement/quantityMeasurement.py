@@ -51,5 +51,13 @@ class Yard(Length):
         return super().__eq__(other)
 
 
+class Centimetre(Length):
+    def __init__(self, cm):
+        super().__init__(length=cm)
+
+    def __eq__(self, other):
+        return super().__eq__(other)
+
+
 if __name__ == '__main__':
     print("Welcome to Quantity Measurement Problem")
