@@ -161,4 +161,8 @@ def test_givenTwoDifferentValuesOfCentimetreType_WhenCompared_ShouldReturnFalse(
 
 
 def test_given_2InchAnd_5Centimetre_WhenCompared_ShouldReturnTrue():
-    assert Inch(2)==Centimetre(5)
+    assert Inch(2) == Centimetre(5)
+
+
+def test_given_5CentimetreAnd_2Inch_WhenCompared_ShouldReturnTrue():
+    assert Centimetre(5) == Inch(2)
