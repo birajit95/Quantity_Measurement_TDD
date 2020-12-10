@@ -25,6 +25,8 @@ class Length:
             return other.length == self.length * 36
         elif isinstance(self, Inch) and isinstance(other, Centimetre):
             return other.length == self.length * 2.5
+        elif isinstance(self, Centimetre) and isinstance(other, Inch):
+            return other.length * 2.5 == self.length
         elif type(self) != type(other) and self.length == other:
             raise InvalidTypeException(ExceptionType.NOT_LENGTH_TYPE_EXCEPTION.value)
 
