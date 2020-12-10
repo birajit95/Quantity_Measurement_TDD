@@ -1,6 +1,7 @@
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import Feet
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import Inch
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import Yard
+from com.bridgelabz.quantitymeasurement.quantityMeasurement import Centimetre
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeException
 import pytest
 
@@ -88,6 +89,7 @@ def test_given_5Inch_60Feet_WhenCompared_ShouldReturnFalse():
     feetValue = Feet(60.0)
     assert (inchValue == feetValue) == False
 
+
 # Test cases for Yard
 
 def test_givenZeroYardAndZeroYard_WhenCompared_ShouldReturnTrue():
@@ -136,3 +138,23 @@ def test_given_1YardAnd_3Feet_WhenCompared_ShouldReturnTrue():
 
 def test_given_1InchAnd_1Yard_WhenCompared_ShouldReturnFalse():
     assert (Inch(1.0) == Yard(1.0)) == False
+
+
+# Test cases for Centimetre
+
+def test_givenZeroCentimetreAndZeroCentimetre_WhenCompared_ShouldReturnTrue():
+    assert Centimetre(0.0) == Centimetre(0)
+
+
+def test_givenACentimetreValue_IfNotNumberType_ShouldRaise_InvalidTypeException():
+    with pytest.raises(InvalidTypeException):
+        feetValue = Centimetre("hello")
+
+
+def test_givenTwoSameCentimetreValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
+    with pytest.raises(InvalidTypeException):
+        assert Centimetre(1) == float(1.0)
+
+
+def test_givenTwoDifferentValuesOfCentimetreType_WhenCompared_ShouldReturnFalse():
+    assert (Centimetre(2) == Centimetre(1)) == False
