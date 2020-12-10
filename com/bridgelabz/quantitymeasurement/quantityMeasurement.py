@@ -38,6 +38,10 @@ class Feet(Length):
     def __eq__(self, other):
         return super().__eq__(other)
 
+    def __add__(self, other):
+        self.length = self.length + other.length
+        return self
+
 
 class Inch(Length):
     def __init__(self, inch):
@@ -45,6 +49,10 @@ class Inch(Length):
 
     def __eq__(self, other):
         return super().__eq__(other)
+
+    def __add__(self, other):
+        self.length = self.length + other.length
+        return self
 
 
 class Yard(Length):
@@ -54,6 +62,10 @@ class Yard(Length):
     def __eq__(self, other):
         return super().__eq__(other)
 
+    def __add__(self, other):
+        self.length = self.length + other.length
+        return self
+
 
 class Centimetre(Length):
     def __init__(self, cm):
@@ -61,6 +73,10 @@ class Centimetre(Length):
 
     def __eq__(self, other):
         return super().__eq__(other)
+
+    def __add__(self, other):
+        self.length = self.length + other.length
+        return self
 
 
 if __name__ == '__main__':
