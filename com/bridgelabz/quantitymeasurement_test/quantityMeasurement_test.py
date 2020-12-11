@@ -62,7 +62,7 @@ def test_given_1FeetAnd_12Inch_WhenCompared_ShouldReturnTrue():
 
 
 def test_given_12InchAnd_1Feet_WhenCompared_ShouldReturnTrue():
-    inchValue = QuantityMeasurement(Length.Inch,12)
+    inchValue = QuantityMeasurement(Length.Inch, 12)
     feetValue = QuantityMeasurement(Length.Feet, 1)
     assert inchValue == feetValue
 
@@ -107,23 +107,23 @@ def test_givenTwoDifferentValuesOfYardType_WhenCompared_ShouldReturnFalse():
 
 
 def test_given_3FeetAnd_1Yard_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Length.Feet,3.0) == QuantityMeasurement(Length.Yard,1.0)
+    assert QuantityMeasurement(Length.Feet, 3.0) == QuantityMeasurement(Length.Yard, 1.0)
 
 
 def test_given_1FeetAnd_1Yard_WhenCompared_ShouldReturnFalse():
-    assert (QuantityMeasurement(Length.Feet,1.0) == QuantityMeasurement(Length.Yard,1.0)) == False
+    assert (QuantityMeasurement(Length.Feet, 1.0) == QuantityMeasurement(Length.Yard, 1.0)) == False
 
 
 def test_given_1YardAnd_36Inch_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Length.Yard,1.0) == QuantityMeasurement(Length.Inch, 36.0)
+    assert QuantityMeasurement(Length.Yard, 1.0) == QuantityMeasurement(Length.Inch, 36.0)
 
 
 def test_given_36InchAnd_1Yard_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Length.Inch, 36.0) == QuantityMeasurement(Length.Yard,1.0)
+    assert QuantityMeasurement(Length.Inch, 36.0) == QuantityMeasurement(Length.Yard, 1.0)
 
 
 def test_given_1YardAnd_3Feet_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Length.Yard,1.0) == QuantityMeasurement(Length.Feet, 3.0)
+    assert QuantityMeasurement(Length.Yard, 1.0) == QuantityMeasurement(Length.Feet, 3.0)
 
 
 def test_given_1InchAnd_1Yard_WhenCompared_ShouldReturnFalse():
@@ -164,3 +164,62 @@ def test_given_5CentimetreAnd_2Inch_WhenCompared_ShouldReturnTrue():
 def test_given_2InchWithOtherLengthType_WhenCompared_ShouldReturnFalse(length1, length2, expected):
     assert (length1 == length2) == expected
 
+
+# Test cases for Length additions
+
+@pytest.mark.parametrize("length1,length2,expected",
+                         [
+                             (QuantityMeasurement(Length.Feet, 0), QuantityMeasurement(Length.Feet, 0),
+                              QuantityMeasurement(Length.Feet, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Inch, 0),
+                              QuantityMeasurement(Length.Inch, 0)),
+                             (QuantityMeasurement(Length.Yard, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Yard, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Centimetre, 0),
+                              QuantityMeasurement(Length.Centimetre, 0))
+                         ])
+def test_givenZeroUnitOfSameType_WhenAdded_ShouldReturnZeroUnitOfSameType(length1, length2, expected):
+    assert (length1 + length2) == expected
+
+
+def test_given_2inchAnd_2Inch_WhenAdded_ShouldReturn_4Inch():
+    assert QuantityMeasurement(Length.Inch, 2) + QuantityMeasurement(Length.Inch, 2) == QuantityMeasurement(Length.Inch,
+                                                                                                            4)
+
+
+def test_given_1FeetAnd_2Inch_WhenAdded_ShouldReturn_14Inch():
+    assert QuantityMeasurement(Length.Feet, 1) + QuantityMeasurement(Length.Inch, 2) == QuantityMeasurement(Length.Inch,
+                                                                                                            14)
+
+
+def test_given_1FeetAnd_1Feet_WhenAdded_ShouldReturn_24Inch():
+    assert QuantityMeasurement(Length.Feet, 1) + QuantityMeasurement(Length.Feet, 1) == QuantityMeasurement(Length.Inch,
+                                                                                                            24)
+
+
+def test_given_2InchAnd_2Point5Centimetre_WhenAdded_ShouldReturn_3Inch():
+    assert QuantityMeasurement(Length.Inch, 2) + QuantityMeasurement(Length.Centimetre, 2.5) == QuantityMeasurement(
+        Length.Inch, 3)
+
+
+@pytest.mark.parametrize("length1,length2,expected",
+                         [
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Feet, 0),
+                              QuantityMeasurement(Length.Centimetre, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Inch, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Yard, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Feet, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Feet, 0),
+                              QuantityMeasurement(Length.Feet, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Centimetre, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Inch, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Feet, 0)),
+                         ])
+def test_givenValuesAszeroForAnyTypes_WhenAdded_ShouldReturnValueAsZeroForAnyType(length1, length2, expected):
+    assert length1 + length2 == expected
