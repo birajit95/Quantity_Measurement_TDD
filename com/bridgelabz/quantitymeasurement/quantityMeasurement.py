@@ -5,6 +5,8 @@ import enum
 
 class QuantityMeasurement:
     def __init__(self, unit, value):
+        if type(value) is not float and type(value) is not int:
+            raise InvalidTypeException(ExceptionType.NOT_A_NUMBER_TYPE_EXCEPTION.value)
         self.__value = value
         self.__unit = unit
 
