@@ -1,32 +1,32 @@
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import QuantityMeasurement
-from com.bridgelabz.quantitymeasurement.Unit import Unit
+from com.bridgelabz.quantitymeasurement.Unit import Length, Volume
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeException
 import pytest
 
 
 def test_givenZeroFeetAndZeroFeet_WhenCompared_ShouldReturnTrue():
-    feetValue1 = QuantityMeasurement(Unit.Feet, 0)
-    feetValue2 = QuantityMeasurement(Unit.Feet, 0)
+    feetValue1 = QuantityMeasurement(Length.Feet, 0)
+    feetValue2 = QuantityMeasurement(Length.Feet, 0)
     assert feetValue1 == feetValue2
 
 
 def test_givenAValue_IfNotNumberType_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
-        feetValue1 = QuantityMeasurement(Unit.Feet, "ha")
-        feetValue2 = QuantityMeasurement(Unit.Feet, "h1")
+        feetValue1 = QuantityMeasurement(Length.Feet, "ha")
+        feetValue2 = QuantityMeasurement(Length.Feet, "h1")
         assert feetValue1 == feetValue2
 
 
 def test_givenTwoSameValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
-        feetValue = QuantityMeasurement(Unit.Feet, 0)
-        notUnitTypeValue = 0
-        assert feetValue == notUnitTypeValue
+        feetValue = QuantityMeasurement(Length.Feet, 0)
+        notLengthTypeValue = 0
+        assert feetValue == notLengthTypeValue
 
 
 def test_givenTwoDifferentValuesOfFeetType_WhenCompared_ShouldReturnFalse():
-    feetValue1 = QuantityMeasurement(Unit.Feet, 2)
-    feetValue2 = QuantityMeasurement(Unit.Feet, 7)
+    feetValue1 = QuantityMeasurement(Length.Feet, 2)
+    feetValue2 = QuantityMeasurement(Length.Feet, 7)
     assert (feetValue1 == feetValue2) == False
 
 
@@ -34,21 +34,21 @@ def test_givenTwoDifferentValuesOfFeetType_WhenCompared_ShouldReturnFalse():
 
 
 def test_givenZeroInchAndZeroInch_WhenCompared_ShouldReturnTrue():
-    inchValue1 = QuantityMeasurement(Unit.Inch, 0)
-    inchValue2 = QuantityMeasurement(Unit.Inch, 0)
+    inchValue1 = QuantityMeasurement(Length.Inch, 0)
+    inchValue2 = QuantityMeasurement(Length.Inch, 0)
     assert inchValue1 == inchValue2
 
 
 def test_givenTwoSameInchValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
-        inchValue1 = QuantityMeasurement(Unit.Inch, 0)
+        inchValue1 = QuantityMeasurement(Length.Inch, 0)
         inchValue2 = float(0.0)
         assert inchValue1 == inchValue2
 
 
 def test_givenTwoDifferentValuesOfInchType_WhenCompared_ShouldReturnFalse():
-    inchValue1 = QuantityMeasurement(Unit.Inch, 4)
-    inchValue2 = QuantityMeasurement(Unit.Inch, 7)
+    inchValue1 = QuantityMeasurement(Length.Inch, 4)
+    inchValue2 = QuantityMeasurement(Length.Inch, 7)
     assert (inchValue1 == inchValue2) == False
 
 
@@ -56,196 +56,196 @@ def test_givenTwoDifferentValuesOfInchType_WhenCompared_ShouldReturnFalse():
 
 
 def test_given_1FeetAnd_12Inch_WhenCompared_ShouldReturnTrue():
-    feetValue = QuantityMeasurement(Unit.Feet, 1)
-    inchValue = QuantityMeasurement(Unit.Inch, 12)
+    feetValue = QuantityMeasurement(Length.Feet, 1)
+    inchValue = QuantityMeasurement(Length.Inch, 12)
     assert feetValue == inchValue
 
 
 def test_given_12InchAnd_1Feet_WhenCompared_ShouldReturnTrue():
-    inchValue = QuantityMeasurement(Unit.Inch, 12)
-    feetValue = QuantityMeasurement(Unit.Feet, 1)
+    inchValue = QuantityMeasurement(Length.Inch, 12)
+    feetValue = QuantityMeasurement(Length.Feet, 1)
     assert inchValue == feetValue
 
 
 def test_given_5FeetAnd_60Inch_WhenComapared_ShouldReturnTrue():
-    feetValue = QuantityMeasurement(Unit.Feet, 5)
-    inchValue = QuantityMeasurement(Unit.Inch, 60)
+    feetValue = QuantityMeasurement(Length.Feet, 5)
+    inchValue = QuantityMeasurement(Length.Inch, 60)
     assert feetValue == inchValue
 
 
 def test_given_60InchAnd_5Feet_WhenComapared_ShouldReturnTrue():
-    inchValue = QuantityMeasurement(Unit.Inch, 60)
-    feetValue = QuantityMeasurement(Unit.Feet, 5)
+    inchValue = QuantityMeasurement(Length.Inch, 60)
+    feetValue = QuantityMeasurement(Length.Feet, 5)
     assert inchValue == feetValue
 
 
 def test_given_5Inch_60Feet_WhenCompared_ShouldReturnFalse():
-    inchValue = QuantityMeasurement(Unit.Inch, 5)
-    feetValue = QuantityMeasurement(Unit.Feet, 60)
+    inchValue = QuantityMeasurement(Length.Inch, 5)
+    feetValue = QuantityMeasurement(Length.Feet, 60)
     assert (inchValue == feetValue) == False
 
 
 # Test cases for Yard
 
 def test_givenZeroYardAndZeroYard_WhenCompared_ShouldReturnTrue():
-    yardValue1 = QuantityMeasurement(Unit.Yard, 0)
-    yardValue2 = QuantityMeasurement(Unit.Yard, 0)
+    yardValue1 = QuantityMeasurement(Length.Yard, 0)
+    yardValue2 = QuantityMeasurement(Length.Yard, 0)
     assert yardValue1 == yardValue2
 
 
 def test_givenTwoSameYardValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
-        yardValue1 = QuantityMeasurement(Unit.Yard, 0)
+        yardValue1 = QuantityMeasurement(Length.Yard, 0)
         yardValue2 = float(0.0)
         assert yardValue1 == yardValue2
 
 
 def test_givenTwoDifferentValuesOfYardType_WhenCompared_ShouldReturnFalse():
-    yardValue1 = QuantityMeasurement(Unit.Yard, 14)
-    yardValue2 = QuantityMeasurement(Unit.Yard, 4)
+    yardValue1 = QuantityMeasurement(Length.Yard, 14)
+    yardValue2 = QuantityMeasurement(Length.Yard, 4)
     assert (yardValue1 == yardValue2) == False
 
 
 def test_given_3FeetAnd_1Yard_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Unit.Feet, 3.0) == QuantityMeasurement(Unit.Yard, 1.0)
+    assert QuantityMeasurement(Length.Feet, 3.0) == QuantityMeasurement(Length.Yard, 1.0)
 
 
 def test_given_1FeetAnd_1Yard_WhenCompared_ShouldReturnFalse():
-    assert (QuantityMeasurement(Unit.Feet, 1.0) == QuantityMeasurement(Unit.Yard, 1.0)) == False
+    assert (QuantityMeasurement(Length.Feet, 1.0) == QuantityMeasurement(Length.Yard, 1.0)) == False
 
 
 def test_given_1YardAnd_36Inch_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Unit.Yard, 1.0) == QuantityMeasurement(Unit.Inch, 36.0)
+    assert QuantityMeasurement(Length.Yard, 1.0) == QuantityMeasurement(Length.Inch, 36.0)
 
 
 def test_given_36InchAnd_1Yard_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Unit.Inch, 36.0) == QuantityMeasurement(Unit.Yard, 1.0)
+    assert QuantityMeasurement(Length.Inch, 36.0) == QuantityMeasurement(Length.Yard, 1.0)
 
 
 def test_given_1YardAnd_3Feet_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Unit.Yard, 1.0) == QuantityMeasurement(Unit.Feet, 3.0)
+    assert QuantityMeasurement(Length.Yard, 1.0) == QuantityMeasurement(Length.Feet, 3.0)
 
 
 def test_given_1InchAnd_1Yard_WhenCompared_ShouldReturnFalse():
-    assert (QuantityMeasurement(Unit.Inch, 1.0) == QuantityMeasurement(Unit.Yard, 1.0)) == False
+    assert (QuantityMeasurement(Length.Inch, 1.0) == QuantityMeasurement(Length.Yard, 1.0)) == False
 
 
 # Test cases for Centimetre
 
 def test_givenZeroCentimetreAndZeroCentimetre_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Unit.Centimetre, 0.0) == QuantityMeasurement(Unit.Centimetre, 0)
+    assert QuantityMeasurement(Length.Centimetre, 0.0) == QuantityMeasurement(Length.Centimetre, 0)
 
 
 def test_givenTwoSameCentimetreValues_WhenComparedIfTypeMissMatched_ShouldRaise_InvalidTypeException():
     with pytest.raises(InvalidTypeException):
-        assert QuantityMeasurement(Unit.Centimetre, 1) == float(1.0)
+        assert QuantityMeasurement(Length.Centimetre, 1) == float(1.0)
 
 
 def test_givenTwoDifferentValuesOfCentimetreType_WhenCompared_ShouldReturnFalse():
-    assert (QuantityMeasurement(Unit.Centimetre, 2) == QuantityMeasurement(Unit.Centimetre, 1)) == False
+    assert (QuantityMeasurement(Length.Centimetre, 2) == QuantityMeasurement(Length.Centimetre, 1)) == False
 
 
 def test_given_2InchAnd_5Centimetre_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Unit.Inch, 2) == QuantityMeasurement(Unit.Centimetre, 5)
+    assert QuantityMeasurement(Length.Inch, 2) == QuantityMeasurement(Length.Centimetre, 5)
 
 
 def test_given_5CentimetreAnd_2Inch_WhenCompared_ShouldReturnTrue():
-    assert QuantityMeasurement(Unit.Centimetre, 5) == QuantityMeasurement(Unit.Inch, 2)
+    assert QuantityMeasurement(Length.Centimetre, 5) == QuantityMeasurement(Length.Inch, 2)
 
 
-@pytest.mark.parametrize("Unit1,Unit2,expected",
+@pytest.mark.parametrize("Length1,Length2,expected",
                          [
-                             (QuantityMeasurement(Unit.Inch, 2), QuantityMeasurement(Unit.Feet, 5), False),
-                             (QuantityMeasurement(Unit.Inch, 2), QuantityMeasurement(Unit.Yard, 5), False),
-                             (QuantityMeasurement(Unit.Centimetre, 5), QuantityMeasurement(Unit.Yard, 2), False),
-                             (QuantityMeasurement(Unit.Centimetre, 5), QuantityMeasurement(Unit.Yard, 2), False),
+                             (QuantityMeasurement(Length.Inch, 2), QuantityMeasurement(Length.Feet, 5), False),
+                             (QuantityMeasurement(Length.Inch, 2), QuantityMeasurement(Length.Yard, 5), False),
+                             (QuantityMeasurement(Length.Centimetre, 5), QuantityMeasurement(Length.Yard, 2), False),
+                             (QuantityMeasurement(Length.Centimetre, 5), QuantityMeasurement(Length.Yard, 2), False),
 
                          ])
-def test_given_2InchWithOtherUnitType_WhenCompared_ShouldReturnFalse(Unit1, Unit2, expected):
-    assert (Unit1 == Unit2) == expected
+def test_given_2InchWithOtherLengthType_WhenCompared_ShouldReturnFalse(Length1, Length2, expected):
+    assert (Length1 == Length2) == expected
 
 
-# Test cases for Unit additions
+# Test cases for Length additions
 
-@pytest.mark.parametrize("Unit1,Unit2,expected",
+@pytest.mark.parametrize("Length1,Length2,expected",
                          [
-                             (QuantityMeasurement(Unit.Feet, 0), QuantityMeasurement(Unit.Feet, 0),
-                              QuantityMeasurement(Unit.Feet, 0)),
-                             (QuantityMeasurement(Unit.Inch, 0), QuantityMeasurement(Unit.Inch, 0),
-                              QuantityMeasurement(Unit.Inch, 0)),
-                             (QuantityMeasurement(Unit.Yard, 0), QuantityMeasurement(Unit.Yard, 0),
-                              QuantityMeasurement(Unit.Yard, 0)),
-                             (QuantityMeasurement(Unit.Centimetre, 0), QuantityMeasurement(Unit.Centimetre, 0),
-                              QuantityMeasurement(Unit.Centimetre, 0))
+                             (QuantityMeasurement(Length.Feet, 0), QuantityMeasurement(Length.Feet, 0),
+                              QuantityMeasurement(Length.Feet, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Inch, 0),
+                              QuantityMeasurement(Length.Inch, 0)),
+                             (QuantityMeasurement(Length.Yard, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Yard, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Centimetre, 0),
+                              QuantityMeasurement(Length.Centimetre, 0))
                          ])
-def test_givenZeroUnitOfSameType_WhenAdded_ShouldReturnZeroUnitOfSameType(Unit1, Unit2, expected):
-    assert (Unit1 + Unit2) == expected
+def test_givenZeroLengthOfSameType_WhenAdded_ShouldReturnZeroLengthOfSameType(Length1, Length2, expected):
+    assert (Length1 + Length2) == expected
 
 
 def test_given_2inchAnd_2Inch_WhenAdded_ShouldReturn_4Inch():
-    assert QuantityMeasurement(Unit.Inch, 2) + QuantityMeasurement(Unit.Inch, 2) == QuantityMeasurement(Unit.Inch,
+    assert QuantityMeasurement(Length.Inch, 2) + QuantityMeasurement(Length.Inch, 2) == QuantityMeasurement(Length.Inch,
                                                                                                             4)
 
 
 def test_given_1FeetAnd_2Inch_WhenAdded_ShouldReturn_14Inch():
-    assert QuantityMeasurement(Unit.Feet, 1) + QuantityMeasurement(Unit.Inch, 2) == QuantityMeasurement(Unit.Inch,
+    assert QuantityMeasurement(Length.Feet, 1) + QuantityMeasurement(Length.Inch, 2) == QuantityMeasurement(Length.Inch,
                                                                                                             14)
 
 
 def test_given_1FeetAnd_1Feet_WhenAdded_ShouldReturn_24Inch():
-    assert QuantityMeasurement(Unit.Feet, 1) + QuantityMeasurement(Unit.Feet, 1) == QuantityMeasurement(Unit.Inch,
+    assert QuantityMeasurement(Length.Feet, 1) + QuantityMeasurement(Length.Feet, 1) == QuantityMeasurement(Length.Inch,
                                                                                                             24)
 
 
 def test_given_2InchAnd_2Point5Centimetre_WhenAdded_ShouldReturn_3Inch():
-    assert QuantityMeasurement(Unit.Inch, 2) + QuantityMeasurement(Unit.Centimetre, 2.5) == QuantityMeasurement(
-        Unit.Inch, 3)
+    assert QuantityMeasurement(Length.Inch, 2) + QuantityMeasurement(Length.Centimetre, 2.5) == QuantityMeasurement(
+        Length.Inch, 3)
 
 
-@pytest.mark.parametrize("Unit1,Unit2,expected",
+@pytest.mark.parametrize("Length1,Length2,expected",
                          [
-                             (QuantityMeasurement(Unit.Inch, 0), QuantityMeasurement(Unit.Feet, 0),
-                              QuantityMeasurement(Unit.Centimetre, 0)),
-                             (QuantityMeasurement(Unit.Inch, 0), QuantityMeasurement(Unit.Yard, 0),
-                              QuantityMeasurement(Unit.Inch, 0)),
-                             (QuantityMeasurement(Unit.Centimetre, 0), QuantityMeasurement(Unit.Yard, 0),
-                              QuantityMeasurement(Unit.Yard, 0)),
-                             (QuantityMeasurement(Unit.Centimetre, 0), QuantityMeasurement(Unit.Yard, 0),
-                              QuantityMeasurement(Unit.Feet, 0)),
-                             (QuantityMeasurement(Unit.Inch, 0), QuantityMeasurement(Unit.Feet, 0),
-                              QuantityMeasurement(Unit.Feet, 0)),
-                             (QuantityMeasurement(Unit.Inch, 0), QuantityMeasurement(Unit.Yard, 0),
-                              QuantityMeasurement(Unit.Centimetre, 0)),
-                             (QuantityMeasurement(Unit.Centimetre, 0), QuantityMeasurement(Unit.Yard, 0),
-                              QuantityMeasurement(Unit.Inch, 0)),
-                             (QuantityMeasurement(Unit.Centimetre, 0), QuantityMeasurement(Unit.Yard, 0),
-                              QuantityMeasurement(Unit.Feet, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Feet, 0),
+                              QuantityMeasurement(Length.Centimetre, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Inch, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Yard, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Feet, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Feet, 0),
+                              QuantityMeasurement(Length.Feet, 0)),
+                             (QuantityMeasurement(Length.Inch, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Centimetre, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Inch, 0)),
+                             (QuantityMeasurement(Length.Centimetre, 0), QuantityMeasurement(Length.Yard, 0),
+                              QuantityMeasurement(Length.Feet, 0)),
                          ])
-def test_givenValuesAszeroForAnyTypes_WhenAdded_ShouldReturnValueAsZeroForAnyType(Unit1, Unit2, expected):
-    assert Unit1 + Unit2 == expected
+def test_givenValuesAszeroForAnyTypes_WhenAdded_ShouldReturnValueAsZeroForAnyType(Length1, Length2, expected):
+    assert Length1 + Length2 == expected
 
 
 # test cases for UC 5
 @pytest.mark.parametrize("vol1,vol2,expected",
                          [
-                             (QuantityMeasurement(Unit.Gallon, 0), QuantityMeasurement(Unit.Gallon, 0), True),
-                             (QuantityMeasurement(Unit.Liter, 0), QuantityMeasurement(Unit.Liter, 0), True),
-                             (QuantityMeasurement(Unit.Ml, 0), QuantityMeasurement(Unit.Ml, 0), True),
-                             (QuantityMeasurement(Unit.Gallon, 0), QuantityMeasurement(Unit.Liter, 0), True),
-                             (QuantityMeasurement(Unit.Gallon, 0), QuantityMeasurement(Unit.Ml, 0), True),
-                             (QuantityMeasurement(Unit.Ml, 0), QuantityMeasurement(Unit.Liter, 0), True),
+                             (QuantityMeasurement(Volume.Gallon, 0), QuantityMeasurement(Volume.Gallon, 0), True),
+                             (QuantityMeasurement(Volume.Liter, 0), QuantityMeasurement(Volume.Liter, 0), True),
+                             (QuantityMeasurement(Volume.Ml, 0), QuantityMeasurement(Volume.Ml, 0), True),
+                             (QuantityMeasurement(Volume.Gallon, 0), QuantityMeasurement(Volume.Liter, 0), True),
+                             (QuantityMeasurement(Volume.Gallon, 0), QuantityMeasurement(Volume.Ml, 0), True),
+                             (QuantityMeasurement(Volume.Ml, 0), QuantityMeasurement(Volume.Liter, 0), True),
                          ])
-def test_givenZeroUnitOfAnyVolumeAndZeroUnitOfAnyVolume_WhenCompared_ShouldReturnTrue(vol1, vol2, expected):
+def test_givenZeroLengthOfAnyVolumeAndZeroLengthOfAnyVolume_WhenCompared_ShouldReturnTrue(vol1, vol2, expected):
     assert (vol1 == vol2) == expected
 
 
 @pytest.mark.parametrize("vol1,vol2,expected",
                          [
-                             (QuantityMeasurement(Unit.Gallon, 1), QuantityMeasurement(Unit.Liter, 3.78), True),
-                             (QuantityMeasurement(Unit.Liter, 1), QuantityMeasurement(Unit.Ml, 1000), True),
-                             (QuantityMeasurement(Unit.Gallon, 1), QuantityMeasurement(Unit.Ml, 3780), True),
-                             (QuantityMeasurement(Unit.Gallon, 1), QuantityMeasurement(Unit.Liter, 378), False),
-                             (QuantityMeasurement(Unit.Liter, 1), QuantityMeasurement(Unit.Ml, 100), False),
+                             (QuantityMeasurement(Volume.Gallon, 1), QuantityMeasurement(Volume.Liter, 3.78), True),
+                             (QuantityMeasurement(Volume.Liter, 1), QuantityMeasurement(Volume.Ml, 1000), True),
+                             (QuantityMeasurement(Volume.Gallon, 1), QuantityMeasurement(Volume.Ml, 3780), True),
+                             (QuantityMeasurement(Volume.Gallon, 1), QuantityMeasurement(Volume.Liter, 378), False),
+                             (QuantityMeasurement(Volume.Liter, 1), QuantityMeasurement(Volume.Ml, 100), False),
                          ])
 def test_givenTwoDifferentVolumes_WhenCompared_ShouldMeetExpectations(vol1, vol2, expected):
     assert (vol1 == vol2) == expected
@@ -253,12 +253,12 @@ def test_givenTwoDifferentVolumes_WhenCompared_ShouldMeetExpectations(vol1, vol2
 
 @pytest.mark.parametrize("vol1,vol2,expectedVol",
                          [
-                             (QuantityMeasurement(Unit.Gallon, 1), QuantityMeasurement(Unit.Liter, 3.78),
-                              QuantityMeasurement(Unit.Liter, 7.56)),
-                             (QuantityMeasurement(Unit.Liter, 1), QuantityMeasurement(Unit.Ml, 1000),
-                              QuantityMeasurement(Unit.Liter, 2)),
-                             (QuantityMeasurement(Unit.Gallon, 1), QuantityMeasurement(Unit.Ml, 3780),
-                              QuantityMeasurement(Unit.Ml, 7560)),
+                             (QuantityMeasurement(Volume.Gallon, 1), QuantityMeasurement(Volume.Liter, 3.78),
+                              QuantityMeasurement(Volume.Liter, 7.56)),
+                             (QuantityMeasurement(Volume.Liter, 1), QuantityMeasurement(Volume.Ml, 1000),
+                              QuantityMeasurement(Volume.Liter, 2)),
+                             (QuantityMeasurement(Volume.Gallon, 1), QuantityMeasurement(Volume.Ml, 3780),
+                              QuantityMeasurement(Volume.Ml, 7560)),
                          ])
 def test_givenTwoDifferentVolumes_WhenAdded_ShouldReturnExpectedValue(vol1, vol2, expectedVol):
     assert vol1 + vol2 == expectedVol
