@@ -237,3 +237,15 @@ def test_givenValuesAszeroForAnyTypes_WhenAdded_ShouldReturnValueAsZeroForAnyTyp
                          ])
 def test_givenZeroUnitOfAnyVolumeAndZeroUnitOfAnyVolume_WhenCompared_ShouldReturnTrue(vol1, vol2, expected):
     assert (vol1 == vol2) == expected
+
+
+@pytest.mark.parametrize("vol1,vol2,expected",
+                         [
+                             (QuantityMeasurement(Length.Gallon, 1), QuantityMeasurement(Length.Liter, 3.78), True),
+                             (QuantityMeasurement(Length.Liter, 1), QuantityMeasurement(Length.Ml, 1000), True),
+                             (QuantityMeasurement(Length.Gallon, 1), QuantityMeasurement(Length.Ml, 3780), True),
+                             (QuantityMeasurement(Length.Gallon, 1), QuantityMeasurement(Length.Liter, 378), False),
+                             (QuantityMeasurement(Length.Liter, 1), QuantityMeasurement(Length.Ml, 100), False),
+                         ])
+def test_givenTwoDifferentVolumes_WhenCompared_ShouldMeetExpectations(vol1, vol2, expected):
+    assert (vol1 == vol2) == expected
