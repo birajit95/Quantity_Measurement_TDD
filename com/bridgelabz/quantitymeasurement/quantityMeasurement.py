@@ -12,6 +12,9 @@ class QuantityMeasurement:
 
     def __eq__(self, other):
         if isinstance(other, QuantityMeasurement):
+            if self.__unit != other.__unit and self.__value == other.__value == 0:
+                value1, value2 = convert(self.__unit, other.__unit, self.__value, other.__value)
+                return value1 == value2
             if self.__unit == other.__unit and self.__value == other.__value:
                 return True
             elif self.__unit == other.__unit and self.__value != other.__value:
@@ -22,6 +25,15 @@ class QuantityMeasurement:
                 value1, value2 = convert(self.__unit, other.__unit, self.__value, other.__value)
                 return value1 == value2
         raise InvalidTypeException(ExceptionType.NOT_LENGTH_TYPE_EXCEPTION.value)
+
+    def __add__(self, other):
+        if isinstance(other, QuantityMeasurement):
+            if self.__value == other.__value == 0:
+                return self
+            value1, value2 = convert(self.__unit, other.__unit, self.__value, other.__value)
+            other.__value = value1 + value2
+            other.__unit = Length.Inch          # applying the base rule
+            return other
 
 
 class Length(enum.Enum):
