@@ -1,5 +1,5 @@
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import QuantityMeasurement
-from com.bridgelabz.quantitymeasurement.Unit import Length, Volume
+from com.bridgelabz.quantitymeasurement.Unit import Length, Volume, Weight
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeException
 import pytest
 
@@ -235,7 +235,7 @@ def test_givenValuesAszeroForAnyTypes_WhenAdded_ShouldReturnValueAsZeroForAnyTyp
                              (QuantityMeasurement(Volume.Gallon, 0), QuantityMeasurement(Volume.Ml, 0), True),
                              (QuantityMeasurement(Volume.Ml, 0), QuantityMeasurement(Volume.Liter, 0), True),
                          ])
-def test_givenZeroLengthOfAnyVolumeAndZeroLengthOfAnyVolume_WhenCompared_ShouldReturnTrue(vol1, vol2, expected):
+def test_givenZeroUnitOfAnyVolumeAndZeroUnitOfAnyVolume_WhenCompared_ShouldReturnTrue(vol1, vol2, expected):
     assert (vol1 == vol2) == expected
 
 
@@ -262,3 +262,18 @@ def test_givenTwoDifferentVolumes_WhenCompared_ShouldMeetExpectations(vol1, vol2
                          ])
 def test_givenTwoDifferentVolumes_WhenAdded_ShouldReturnExpectedValue(vol1, vol2, expectedVol):
     assert vol1 + vol2 == expectedVol
+
+
+# Test cases for UC7
+
+@pytest.mark.parametrize("weight1,weight2,expected",
+                         [
+                             (QuantityMeasurement(Weight.Gram, 0), QuantityMeasurement(Weight.Gram, 0), True),
+                             (QuantityMeasurement(Weight.KG, 0), QuantityMeasurement(Weight.KG, 0), True),
+                             (QuantityMeasurement(Weight.Tonne, 0), QuantityMeasurement(Weight.Tonne, 0), True),
+                             (QuantityMeasurement(Weight.Tonne, 0), QuantityMeasurement(Weight.KG, 0), True),
+                             (QuantityMeasurement(Weight.KG, 0), QuantityMeasurement(Weight.Gram, 0), True),
+                             (QuantityMeasurement(Weight.Gram, 0), QuantityMeasurement(Weight.Tonne, 0), True),
+                         ])
+def test_givenZeroUnitOfAnyWeightAndZeroUnitOfAnyWeight_WhenCompared_ShouldReturnTrue(weight1, weight2, expected):
+    assert (weight1 == weight2) == expected
