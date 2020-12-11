@@ -223,3 +223,17 @@ def test_given_2InchAnd_2Point5Centimetre_WhenAdded_ShouldReturn_3Inch():
                          ])
 def test_givenValuesAszeroForAnyTypes_WhenAdded_ShouldReturnValueAsZeroForAnyType(length1, length2, expected):
     assert length1 + length2 == expected
+
+
+# test cases for UC 5
+@pytest.mark.parametrize("vol1,vol2,expected",
+                         [
+                             (QuantityMeasurement(Length.Gallon, 0), QuantityMeasurement(Length.Gallon, 0), True),
+                             (QuantityMeasurement(Length.Liter, 0), QuantityMeasurement(Length.Liter, 0), True),
+                             (QuantityMeasurement(Length.Ml, 0), QuantityMeasurement(Length.Ml, 0), True),
+                             (QuantityMeasurement(Length.Gallon, 0), QuantityMeasurement(Length.Liter, 0), True),
+                             (QuantityMeasurement(Length.Gallon, 0), QuantityMeasurement(Length.Ml, 0), True),
+                             (QuantityMeasurement(Length.Ml, 0), QuantityMeasurement(Length.Liter, 0), True),
+                         ])
+def test_givenZeroUnitOfAnyVolumeAndZeroUnitOfAnyVolume_WhenCompared_ShouldReturnTrue(vol1, vol2, expected):
+    assert (vol1 == vol2) == expected
