@@ -3,8 +3,8 @@ import enum
 
 class ExceptionType(enum.Enum):
     NOT_A_NUMBER_TYPE_EXCEPTION = "Given value is not a number"
-    NOT_LENGTH_TYPE_EXCEPTION = "Other value is not Length type"
-
+    COMPARISON_NOT_POSSIBLE_EXCEPTION = "Comparison between both types is not possible"
+    ADDITION_NOT_POSSIBLE_EXCEPTION = "Addition between both is not possible"
 
 
 class InvalidTypeException(Exception):
