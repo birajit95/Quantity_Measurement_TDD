@@ -249,3 +249,16 @@ def test_givenZeroUnitOfAnyVolumeAndZeroUnitOfAnyVolume_WhenCompared_ShouldRetur
                          ])
 def test_givenTwoDifferentVolumes_WhenCompared_ShouldMeetExpectations(vol1, vol2, expected):
     assert (vol1 == vol2) == expected
+
+
+@pytest.mark.parametrize("vol1,vol2,expectedVol",
+                         [
+                             (QuantityMeasurement(Length.Gallon, 1), QuantityMeasurement(Length.Liter, 3.78),
+                              QuantityMeasurement(Length.Liter, 7.56)),
+                             (QuantityMeasurement(Length.Liter, 1), QuantityMeasurement(Length.Ml, 1000),
+                              QuantityMeasurement(Length.Liter, 2)),
+                             (QuantityMeasurement(Length.Gallon, 1), QuantityMeasurement(Length.Ml, 3780),
+                              QuantityMeasurement(Length.Ml, 7560)),
+                         ])
+def test_givenTwoDifferentVolumes_WhenAdded_ShouldReturnExpectedValue(vol1, vol2, expectedVol):
+    assert vol1 + vol2 == expectedVol
