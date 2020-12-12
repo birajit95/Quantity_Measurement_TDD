@@ -289,3 +289,12 @@ def test_givenZeroUnitOfAnyWeightAndZeroUnitOfAnyWeight_WhenCompared_ShouldRetur
                          ])
 def test_givenTwoWeights_WhenCompared_ShouldReturnExpectation(weight1, weight2, expected):
     assert (weight1 == weight2) == expected
+
+
+@pytest.mark.parametrize("weight1,weight2,expected",
+     [
+         (QuantityMeasurement(Weight.Tonne, 1), QuantityMeasurement(Weight.Gram, 1000), QuantityMeasurement(Weight.KG, 1001)),
+         (QuantityMeasurement(Weight.KG, 5), QuantityMeasurement(Weight.Gram, 5000), QuantityMeasurement(Weight.KG, 10)),
+     ])
+def test_givenTwoWeights_WhenCompared_ShouldReturnExpectation(weight1, weight2, expected):
+    assert (weight1 + weight2) == expected
