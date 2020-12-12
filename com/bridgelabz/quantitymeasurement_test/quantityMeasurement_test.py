@@ -1,5 +1,5 @@
 from com.bridgelabz.quantitymeasurement.quantityMeasurement import QuantityMeasurement
-from com.bridgelabz.quantitymeasurement.Unit import Length, Volume, Weight
+from com.bridgelabz.quantitymeasurement.Unit import Length, Volume, Weight, Temperature
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeException
 import pytest
 
@@ -298,3 +298,17 @@ def test_givenTwoWeights_WhenCompared_ShouldReturnExpectation(weight1, weight2, 
      ])
 def test_givenTwoWeights_WhenCompared_ShouldReturnExpectation(weight1, weight2, expected):
     assert (weight1 + weight2) == expected
+
+
+# Test cases for UC 8
+
+@pytest.mark.parametrize("Temp1,Temp2,expected",
+     [
+         (QuantityMeasurement(Temperature.C, 0), QuantityMeasurement(Temperature.F, 32), True),
+         (QuantityMeasurement(Temperature.F, 212), QuantityMeasurement(Temperature.C, 100), True),
+         (QuantityMeasurement(Temperature.F, -40), QuantityMeasurement(Temperature.C, -40), True),
+         (QuantityMeasurement(Temperature.C, 100), QuantityMeasurement(Temperature.F, 100), False),
+
+     ])
+def test_givenTwoDifferentTemperatures_WhenCompared_ShouldReturnExpectation(Temp1, Temp2, expected):
+    assert (Temp1 == Temp2) == expected
