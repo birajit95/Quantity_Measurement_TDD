@@ -15,6 +15,11 @@ class Volume(enum.Enum):
 
 
 class Weight(enum.Enum):
-    Gram = 1.0   # base for weight
+    Gram = 1.0  # base for weight
     KG = 1000.0
     Tonne = 1000000
+
+
+class Temperature(enum.Enum):
+    C = 1.0
+    F = 5.0/9.0
