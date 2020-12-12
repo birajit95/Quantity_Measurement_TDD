@@ -277,3 +277,15 @@ def test_givenTwoDifferentVolumes_WhenAdded_ShouldReturnExpectedValue(vol1, vol2
                          ])
 def test_givenZeroUnitOfAnyWeightAndZeroUnitOfAnyWeight_WhenCompared_ShouldReturnTrue(weight1, weight2, expected):
     assert (weight1 == weight2) == expected
+
+
+@pytest.mark.parametrize("weight1,weight2,expected",
+                         [
+                             (QuantityMeasurement(Weight.KG, 1), QuantityMeasurement(Weight.Gram, 1000), True),
+                             (QuantityMeasurement(Weight.Tonne, 1), QuantityMeasurement(Weight.KG, 1000), True),
+                             (QuantityMeasurement(Weight.Tonne, 1), QuantityMeasurement(Weight.Gram, 1000000), True),
+                             (QuantityMeasurement(Weight.Tonne, 1), QuantityMeasurement(Weight.KG, 100), False),
+                             (QuantityMeasurement(Weight.KG, 1), QuantityMeasurement(Weight.Gram, 100), False),
+                         ])
+def test_givenTwoWeights_WhenCompared_ShouldReturnExpectation(weight1, weight2, expected):
+    assert (weight1 == weight2) == expected
