@@ -1,6 +1,6 @@
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import InvalidTypeException
 from com.bridgelabz.quantitymeasurement.InvalidTypeException import ExceptionType
-from com.bridgelabz.quantitymeasurement.Unit import Length, Volume
+from com.bridgelabz.quantitymeasurement.Unit import Length, Volume, Weight
 from com.bridgelabz.quantitymeasurement.Converter import Converter
 
 
@@ -33,10 +33,15 @@ class QuantityMeasurement:
                 return self
             value1, value2 = Converter.convert(self.__unit, other.__unit, self.__value, other.__value)
             other.__value = value1 + value2
-            other.__unit = Length.Inch if isinstance(other.__unit, Length) else Volume.Ml  # applying the base rule
+            other.__unit = Converter.BaseUnitDict[type(self.__unit)]
             return other
         raise InvalidTypeException(ExceptionType.ADDITION_NOT_POSSIBLE_EXCEPTION.value)
 
 
 if __name__ == '__main__':
     print("Welcome to Quantity Measurement Problem")
+    w1 = QuantityMeasurement(Weight.Tonne, 1)
+    w2 = QuantityMeasurement(Weight.Gram, 1000)
+    w3 = QuantityMeasurement(Weight.KG, 1001)
+    w = w1 + w2
+    print(w == w3)

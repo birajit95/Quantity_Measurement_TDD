@@ -15,6 +15,6 @@ class Volume(enum.Enum):
 
 
 class Weight(enum.Enum):
-    Gram = 1.0
+    Gram = 1.0   # base for weight
     KG = 1000.0
     Tonne = 1000000
